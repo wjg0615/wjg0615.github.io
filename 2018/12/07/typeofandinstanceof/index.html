@@ -82,13 +82,13 @@
 <meta name="description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="typeof和instanceof的区别">
-<meta property="og:url" content="http://yoursite.com/2018/12/07/typeof和instanceof的区别/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/12/07/typeofandinstanceof/index.html">
 <meta property="og:site_name" content="wjg博客">
 <meta property="og:description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018-12-07-typeofandinstanceof/__proto__.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/07/typeof和instanceof的区别/hexo/source/_posts/2018-12-07-typeof和instanceof的区别/instanceof.png">
-<meta property="og:updated_time" content="2018-12-07T14:56:38.175Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/07/typeofandinstanceof/hexo/source/_posts/2018-12-07-typeof和instanceof的区别/instanceof.png">
+<meta property="og:updated_time" content="2018-12-07T15:10:25.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typeof和instanceof的区别">
 <meta name="twitter:description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/07/typeof和instanceof的区别/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/07/typeofandinstanceof/">
 
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/typeof和instanceof的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/typeofandinstanceof/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wjg">
@@ -303,8 +303,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/07/typeof和instanceof的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/07/typeof和instanceof的区别/" itemprop="commentCount"></span>
+                <a href="/2018/12/07/typeofandinstanceof/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/07/typeofandinstanceof/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -380,7 +380,7 @@
 <p>如上图，每个对象都有一个<code>__proto__</code>属性，指向创建该对象的函数的<strong>prototype</strong>。</p>
 <p>instanceof的判断规则往下面的例子看</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> Foo();</span><br><span class="line">alert(f1 <span class="keyword">instanceof</span> Foo) <span class="comment">//会返回true</span></span><br></pre></td></tr></table></figure>
-<p><img src="//yoursite.com/2018/12/07/typeof和instanceof的区别/hexo\source\_posts\2018-12-07-typeof和instanceof的区别\instanceof.png" alt="instanceof"></p>
+<p><img src="//yoursite.com/2018/12/07/typeofandinstanceof/hexo\source\_posts\2018-12-07-typeof和instanceof的区别\instanceof.png" alt="instanceof"></p>
 <p>然后instanceof的判断规则就是：instanceof运算符的第一个变量是一个对象，暂时称为A;第二个变量一般是函数，称为B。沿着A的<code>__proto__</code>这条线来找，同时沿着B的prototype这条线来找，如果两条线能找到同一个引用，就是返回true，如果找到终点都没有重合就返回false。</p>
 
       
