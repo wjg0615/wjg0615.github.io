@@ -86,13 +86,13 @@
 <meta property="og:site_name" content="wjg博客">
 <meta property="og:description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wjg0615.github.io/2018/12/07/typeof和instanceof的区别/1.png">
-<meta property="og:image" content="http://wjg0615.github.io/2018/12/07/typeof和instanceof的区别/hexo/source/_posts/2018-12-07-typeof和instanceof的区别/instanceof.png">
-<meta property="og:updated_time" content="2018-12-07T15:49:19.117Z">
+<meta property="og:image" content="http://wjg0615.github.io/2018/12/07/typeof和instanceof的区别/__proto__.png">
+<meta property="og:image" content="http://wjg0615.github.io/2018/12/07/typeof和instanceof的区别/instanceof.png">
+<meta property="og:updated_time" content="2018-12-07T16:08:46.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typeof和instanceof的区别">
 <meta name="twitter:description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
-<meta name="twitter:image" content="http://wjg0615.github.io/2018/12/07/typeof和instanceof的区别/1.png">
+<meta name="twitter:image" content="http://wjg0615.github.io/2018/12/07/typeof和instanceof的区别/__proto__.png">
 
 
 
@@ -376,11 +376,11 @@
 <p>这里如果要究其原理的话，那就要涉及到原型和隐形原型了。</p>
 <p>上面例子中为什么a instanceof test 是返回true? (这里简单的说明一下原型，后面会补充详细的原型)</p>
 <p>每个函数function都有一个prototype，即原型。每个对象都有一个<code>__proto__</code>，为隐式原型。</p>
-<p><img src="//wjg0615.github.io/2018/12/07/typeof和instanceof的区别/1.png" alt="1"></p>
+<p><img src="//wjg0615.github.io/2018/12/07/typeof和instanceof的区别/__proto__.png" alt=""></p>
 <p>如上图，每个对象都有一个<code>__proto__</code>属性，指向创建该对象的函数的<strong>prototype</strong>。</p>
 <p>instanceof的判断规则往下面的例子看</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> Foo();</span><br><span class="line">alert(f1 <span class="keyword">instanceof</span> Foo) <span class="comment">//会返回true</span></span><br></pre></td></tr></table></figure>
-<p><img src="//wjg0615.github.io/2018/12/07/typeof和instanceof的区别/hexo\source\_posts\2018-12-07-typeof和instanceof的区别\instanceof.png" alt="instanceof"></p>
+<p><img src="//wjg0615.github.io/2018/12/07/typeof和instanceof的区别/instanceof.png" alt=""></p>
 <p>然后instanceof的判断规则就是：instanceof运算符的第一个变量是一个对象，暂时称为A;第二个变量一般是函数，称为B。沿着A的<code>__proto__</code>这条线来找，同时沿着B的prototype这条线来找，如果两条线能找到同一个引用，就是返回true，如果找到终点都没有重合就返回false。</p>
 
       
