@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="基础概念 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：  关于TCP协议其实在web通信中，不仅需要HTTP协议，还需要其他协议的，TCP是其中一种。在进行http之">
+<meta name="description" content="基础概念 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http的自我总结（1）---TCP&#x2F;IP协议">
 <meta property="og:url" content="http://wjg0615.github.io/2019/04/04/http的自我总结/index.html">
 <meta property="og:site_name" content="wjg博客">
-<meta property="og:description" content="基础概念 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：  关于TCP协议其实在web通信中，不仅需要HTTP协议，还需要其他协议的，TCP是其中一种。在进行http之">
+<meta property="og:description" content="基础概念 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wjg0615.github.io/2019/04/04/http的自我总结/2019-04-04-http的自我总结/httplayer.png">
 <meta property="og:image" content="http://wjg0615.github.io/2019/04/04/http的自我总结/2019-04-04-http的自我总结/httpchuanshu.png">
 <meta property="og:image" content="http://wjg0615.github.io/2019/04/04/http的自我总结/2019-04-04-http的自我总结/httpthree.png">
 <meta property="og:image" content="http://wjg0615.github.io/2019/04/04/http的自我总结/2019-04-04-http的自我总结/httpfour.png">
-<meta property="og:updated_time" content="2019-04-04T19:42:43.518Z">
+<meta property="og:updated_time" content="2019-04-04T19:58:27.403Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http的自我总结（1）---TCP&#x2F;IP协议">
-<meta name="twitter:description" content="基础概念 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：  关于TCP协议其实在web通信中，不仅需要HTTP协议，还需要其他协议的，TCP是其中一种。在进行http之">
+<meta name="twitter:description" content="基础概念 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：">
 <meta name="twitter:image" content="http://wjg0615.github.io/2019/04/04/http的自我总结/2019-04-04-http的自我总结/httplayer.png">
 
 
@@ -366,7 +366,7 @@
 
       
         <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p> 一般的，我们把计算机网络分成了5层，分别是物理层，数据链路层，网络层，运输层，应用层（ISO是七层模型，TCP/IP是四层模型），而我们使用的HTTP协议就是属于应用层，当然互联中的应用层协议还有很多，如域名系统的DNS，支持电子邮件的SMTP协议的等等。以下图三种协议的区别：</p>
-<p><img src="2019-04-04-http的自我总结/httplayer.png" alt="img"></p>
+<p><img src="2019-04-04-http的自我总结/httplayer.png" alt="img"><br><a id="more"></a></p>
 <h2 id="关于TCP协议"><a href="#关于TCP协议" class="headerlink" title="关于TCP协议"></a>关于TCP协议</h2><p>其实在web通信中，不仅需要HTTP协议，还需要其他协议的，TCP是其中一种。在进行http之前是要先建立起TCP连接，连接Web浏览器首先要通过网络与Web服务器建立连接，该连接就是通过TCP来完成的。HTTP是比TCP更高层次的应用层协议，根据规则， 只有低层协议建立之后才能，才能进行更高层协议的连接。TCP提供了一种可靠、面向连接、字节流、传输层的服务，采用三次握手建立一个连接。采用4次挥手来关闭一个连接。</p>
 <p>TCP 之所以可靠，大体上由于以下原因：</p>
 <p>1.数据包校验：目的是检测数据在传输过程中的任何变化，若校验出包有错，则丢弃报文段并且不给出响应，这时 TCP 发送数据端超时后会重发数据；</p>
