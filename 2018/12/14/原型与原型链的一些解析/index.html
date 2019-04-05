@@ -368,9 +368,9 @@
 <p>如上面的代码，此时Fn.prototype里就增加两个自定义属性，一个name，一个是函数getYear。此时new构造函数Fn得出的实例对象就也会有这两个新属性。因为每个对象都有一个隐藏的属性——“<strong>proto</strong>”，这个属性引用了创建这个对象的函数的prototype。即：<code>fn.__proto__</code> === Fn.prototype。</p>
 <a id="more"></a>
 <p><code>__proto__</code>这个可以称为”隐形原型“，每个对象都有一个。以下的引用别人的一张图可以对比出以下区别</p>
-<p><img src="/2018/12/14/原型与原型链的一些解析/proto.png" alt="__proto__"></p>
+<p><img src="//wjg0615.github.io/2018/12/14/原型与原型链的一些解析/proto.png" alt="__proto__"></p>
 <p>总结来说每个对象都有一个<code>__proto__</code>属性，指向创建该对象的函数的prototype。后面就引出原型链。以下图就会非常可以看出什么是原型链。</p>
-<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p><img src="/2018/12/14/原型与原型链的一些解析/yuanxianglian.png" alt=""></p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p><img src="//wjg0615.github.io/2018/12/14/原型与原型链的一些解析/yuanxianglian.png" alt=""></p>
 <p>但这里有个非常需要的注意点：Object.prototype的<code>__proto__</code>指向的是null，切记切记！</p>
 <p>扩展：es5实现es6的Class</p>
 <p>其实这个就可以构造函数模式+原型模式。这样的好处是，每个实例可以保持独特的实例属性，也可以共有原型方法。</p>
