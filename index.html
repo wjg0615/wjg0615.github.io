@@ -360,24 +360,15 @@
 
       
         
-          
-            <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。</p>
-<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷新缓存字段，没过期的话就直接在客户端缓存数据里获取数据。</p>
-<h5 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h5><p>此字段为http1.0推出的，代表着是缓存过期的时间，如果客户端的时间大于此时间就代表缓存过期，要去服务端获取数据并且刷新此字段的时间。不过由于客户端时间和服务器的时间是有差异的，所以缓存命中也有误差。所以推出了Cache-Control字段来替代，不过因为有时为了兼容1.0，所以有时还会使用Expires字段。</p>
-<h5 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h5><p>此字段是http1.1推出的，它有几个值：private，public，max-age，no-cache，no-store。它的优先级高于Expires。</p>
-<p>private：此字段是服务端响应报文才有的，代表是该缓存只能由客户端缓存，即代理服务器都不可以缓存。</p>
-<p>public：此字段是服务端响应报文才有的，代表是该缓存能由客户端和代理服务缓存。</p>
-<p>max-age：此字段是设置缓存XXX秒后过期的字段。在浏览器接收到资源后开始倒计时，这个主要是为了解决Expires绝对时间的误差。</p>
-<p>no-cache：此字段代表使用协商缓存来验证是否过期。</p>
-<p>no-store：此字段强制不缓存。</p>
-<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>协商缓存第一次去请求时，服务端会将数据和缓存标识都给客户端，然后后面每次请求都要去服务端对比一下缓存标识，当服务器数据更改时会更新标识，服务器拿到浏览器发来的标识进行对比，相同代表数据未更改，响应浏览器通知数据未更改，浏览器会去缓存中获取数据，如果标识不同，代表服务器更改过数据，所以会将新的数据和新的标识返回浏览器，浏览器会将在服务器获取到新的数据和标识存入缓存中。<strong>协商缓存和强制缓存不同的是，协商缓存每次请求都需要跟服务器通信，而且命中缓存服务器返回状态码不再是 200，而是 304。</strong></p>
-<h5 id="Last-Modified和If-Modified-Since"><a href="#Last-Modified和If-Modified-Since" class="headerlink" title="Last-Modified和If-Modified-Since"></a>Last-Modified和If-Modified-Since</h5><p>此两个字段是http1.0推出的，使用协商缓存的情况下，第一次请求的时候服务端会给出Last-Modified字段，代表是资源最后修改的时间，在第二次请求后请求报文也会带上一个字段If-Modified-Since，它的值就是上次服务端给的Last-Modified字段的值，然后服务端会将此字段跟请求的资源最后修改的时间做一下对比，如果相等的话，缓存命中，返回304状态码，客户端就会去缓存数据里获取数据，不相等的话，就返回200，在服务端获取新数据和资源修改时间存在If-Modified-Since字段里。</p>
-<p>不过这里也有个问题，就是请求的资源新增一个字符又删除了，文件相当于没改，但是资源的修改时间还是会跟着更新，这里就造成缓存命中错误。所以在http1.1中推出了<strong>Etag</strong>和<strong>If-None-Match</strong>。</p>
-<h5 id="Etag和If-None-Match"><a href="#Etag和If-None-Match" class="headerlink" title="Etag和If-None-Match"></a>Etag和If-None-Match</h5><p>此两个字段是http1.1推出的。第一次请求的时候服务端会给出Etag 字段来设置缓存的标识（Etag生成计算规则是由服务端来决定的），在第二次请求后请求报文就带上If-None-Match的字段，它的值就是上次服务端给的Etag字段的值，服务器就会用次标识和之前的标识作比较，如果一样就命中缓存，返回304状态码，让客户端去缓存数据里获取数据。当然同样它们优先级高于Last-Modified和If-Modified-Since。</p>
-<p>这里需要知道的是，由于Etag是由服务端计算得出，所以实际开发中要以保证服务器性能的前提下生成唯一标识。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为了使缓存策略更加健壮、灵活，<code>HTTP 1.0</code> 版本 和 <code>HTTP 1.1</code> 版本的缓存策略会同时使用，甚至强制缓存和协商缓存也会同时使用，对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接使用缓存，超出有效时间，执行协商缓存策略，对于协商缓存，将缓存信息中的 <code>Etag</code> 和 <code>Last-Modified</code> 通过请求头 <code>If-None-Match</code> 和 <code>If-Modified-Since</code> 发送给服务器，由服务器校验同时设置新的强制缓存，校验通过并返回 <code>304</code> 状态码时，浏览器直接使用缓存，如果协商缓存也未命中，则服务器重新设置协商缓存的标识。</p>
-
-          
+          <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷新缓存字段，没过期的话就直接在客户端缓存数据里获取数据。<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/24/http的自我总结-2/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

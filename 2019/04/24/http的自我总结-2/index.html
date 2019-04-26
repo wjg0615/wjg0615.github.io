@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="wjg博客">
 <meta property="og:description" content="简单介绍http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。 强缓存强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T09:41:40.655Z">
+<meta property="og:updated_time" content="2019-04-26T09:43:55.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http的自我总结(2)--http缓存">
 <meta name="twitter:description" content="简单介绍http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。 强缓存强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷">
@@ -361,7 +361,7 @@
 
       
         <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。</p>
-<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷新缓存字段，没过期的话就直接在客户端缓存数据里获取数据。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷新缓存字段，没过期的话就直接在客户端缓存数据里获取数据。<br><a id="more"></a></p>
 <h5 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h5><p>此字段为http1.0推出的，代表着是缓存过期的时间，如果客户端的时间大于此时间就代表缓存过期，要去服务端获取数据并且刷新此字段的时间。不过由于客户端时间和服务器的时间是有差异的，所以缓存命中也有误差。所以推出了Cache-Control字段来替代，不过因为有时为了兼容1.0，所以有时还会使用Expires字段。</p>
 <h5 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h5><p>此字段是http1.1推出的，它有几个值：private，public，max-age，no-cache，no-store。它的优先级高于Expires。</p>
 <p>private：此字段是服务端响应报文才有的，代表是该缓存只能由客户端缓存，即代理服务器都不可以缓存。</p>
