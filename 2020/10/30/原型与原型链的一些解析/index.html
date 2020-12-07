@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="简单介绍http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。 强缓存强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷">
+<meta name="description" content="原型JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。 123456789function Fn() &amp;#123; &amp;#125;       Fn.prototype.name = &apos;wjg&apos;;       Fn.protot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="http的自我总结(2)--http缓存">
-<meta property="og:url" content="http://wjg0615.github.io/2019/04/24/http的自我总结-2/index.html">
+<meta property="og:title" content="原型与原型链的一些解析">
+<meta property="og:url" content="http://wjg0615.github.io/2020/10/30/原型与原型链的一些解析/index.html">
 <meta property="og:site_name" content="wjg博客">
-<meta property="og:description" content="简单介绍http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。 强缓存强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷">
+<meta property="og:description" content="原型JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。 123456789function Fn() &amp;#123; &amp;#125;       Fn.prototype.name = &apos;wjg&apos;;       Fn.protot">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T09:43:55.039Z">
+<meta property="og:image" content="http://wjg0615.github.io/2020/10/30/原型与原型链的一些解析/proto.png">
+<meta property="og:image" content="http://wjg0615.github.io/2020/10/30/原型与原型链的一些解析/yuanxianglian.png">
+<meta property="og:updated_time" content="2020-12-07T13:02:52.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="http的自我总结(2)--http缓存">
-<meta name="twitter:description" content="简单介绍http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。 强缓存强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷">
+<meta name="twitter:title" content="原型与原型链的一些解析">
+<meta name="twitter:description" content="原型JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。 123456789function Fn() &amp;#123; &amp;#125;       Fn.prototype.name = &apos;wjg&apos;;       Fn.protot">
+<meta name="twitter:image" content="http://wjg0615.github.io/2020/10/30/原型与原型链的一些解析/proto.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://wjg0615.github.io/2019/04/24/http的自我总结-2/">
+  <link rel="canonical" href="http://wjg0615.github.io/2020/10/30/原型与原型链的一些解析/">
 
 
 
 
 
-  <title>http的自我总结(2)--http缓存 | wjg博客</title>
+  <title>原型与原型链的一些解析 | wjg博客</title>
   
 
 
@@ -252,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wjg0615.github.io/2019/04/24/http的自我总结-2/">
+    <link itemprop="mainEntityOfPage" href="http://wjg0615.github.io/2020/10/30/原型与原型链的一些解析/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wjg">
@@ -269,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">http的自我总结(2)--http缓存</h1>
+          <h1 class="post-title" itemprop="name headline">原型与原型链的一些解析</h1>
         
 
         <div class="post-meta">
@@ -281,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-24T16:53:30+08:00">
-                2019-04-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-30T00:00:00+08:00">
+                2020-10-30
               </time>
             
 
@@ -300,8 +303,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/24/http的自我总结-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/24/http的自我总结-2/" itemprop="commentCount"></span>
+                <a href="/2020/10/30/原型与原型链的一些解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/10/30/原型与原型链的一些解析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -323,7 +326,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k 字
+                  607 字
                 </span>
               
 
@@ -339,7 +342,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  2
                 </span>
               
             </div>
@@ -360,21 +363,22 @@
       
 
       
-        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>http缓存作为一种提高页面性能的做法是必不可少的，它不仅大大减少带宽而且也会提高页面加载速度，提高用户体验。缓存一般针对的是js，css，图片等静态资源。http缓存分为强缓存和协商缓存，其中强缓存的优先级高于协商缓存。</p>
-<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存一般是不用去服务端验证缓存是否过期的，根据上一次去服务端获取的Expires或Cache-Control字段判断缓存是否过期，若过期就去服务端获取数据并且刷新缓存字段，没过期的话就直接在客户端缓存数据里获取数据。<br><a id="more"></a></p>
-<h5 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h5><p>此字段为http1.0推出的，代表着是缓存过期的时间，如果客户端的时间大于此时间就代表缓存过期，要去服务端获取数据并且刷新此字段的时间。不过由于客户端时间和服务器的时间是有差异的，所以缓存命中也有误差。所以推出了Cache-Control字段来替代，不过因为有时为了兼容1.0，所以有时还会使用Expires字段。</p>
-<h5 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h5><p>此字段是http1.1推出的，它有几个值：private，public，max-age，no-cache，no-store。它的优先级高于Expires。</p>
-<p>private：此字段是服务端响应报文才有的，代表是该缓存只能由客户端缓存，即代理服务器都不可以缓存。</p>
-<p>public：此字段是服务端响应报文才有的，代表是该缓存能由客户端和代理服务缓存。</p>
-<p>max-age：此字段是设置缓存XXX秒后过期的字段。在浏览器接收到资源后开始倒计时，这个主要是为了解决Expires绝对时间的误差。</p>
-<p>no-cache：此字段代表使用协商缓存来验证是否过期。</p>
-<p>no-store：此字段强制不缓存。</p>
-<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>协商缓存第一次去请求时，服务端会将数据和缓存标识都给客户端，然后后面每次请求都要去服务端对比一下缓存标识，当服务器数据更改时会更新标识，服务器拿到浏览器发来的标识进行对比，相同代表数据未更改，响应浏览器通知数据未更改，浏览器会去缓存中获取数据，如果标识不同，代表服务器更改过数据，所以会将新的数据和新的标识返回浏览器，浏览器会将在服务器获取到新的数据和标识存入缓存中。<strong>协商缓存和强制缓存不同的是，协商缓存每次请求都需要跟服务器通信，而且命中缓存服务器返回状态码不再是 200，而是 304。</strong></p>
-<h5 id="Last-Modified和If-Modified-Since"><a href="#Last-Modified和If-Modified-Since" class="headerlink" title="Last-Modified和If-Modified-Since"></a>Last-Modified和If-Modified-Since</h5><p>此两个字段是http1.0推出的，使用协商缓存的情况下，第一次请求的时候服务端会给出Last-Modified字段，代表是资源最后修改的时间，在第二次请求后请求报文也会带上一个字段If-Modified-Since，它的值就是上次服务端给的Last-Modified字段的值，然后服务端会将此字段跟请求的资源最后修改的时间做一下对比，如果相等的话，缓存命中，返回304状态码，客户端就会去缓存数据里获取数据，不相等的话，就返回200，在服务端获取新数据和资源修改时间存在If-Modified-Since字段里。</p>
-<p>不过这里也有个问题，就是请求的资源新增一个字符又删除了，文件相当于没改，但是资源的修改时间还是会跟着更新，这里就造成缓存命中错误。所以在http1.1中推出了<strong>Etag</strong>和<strong>If-None-Match</strong>。</p>
-<h5 id="Etag和If-None-Match"><a href="#Etag和If-None-Match" class="headerlink" title="Etag和If-None-Match"></a>Etag和If-None-Match</h5><p>此两个字段是http1.1推出的。第一次请求的时候服务端会给出Etag 字段来设置缓存的标识（Etag生成计算规则是由服务端来决定的），在第二次请求后请求报文就带上If-None-Match的字段，它的值就是上次服务端给的Etag字段的值，服务器就会用次标识和之前的标识作比较，如果一样就命中缓存，返回304状态码，让客户端去缓存数据里获取数据。当然同样它们优先级高于Last-Modified和If-Modified-Since。</p>
-<p>这里需要知道的是，由于Etag是由服务端计算得出，所以实际开发中要以保证服务器性能的前提下生成唯一标识。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为了使缓存策略更加健壮、灵活，<code>HTTP 1.0</code> 版本 和 <code>HTTP 1.1</code> 版本的缓存策略会同时使用，甚至强制缓存和协商缓存也会同时使用，对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接使用缓存，超出有效时间，执行协商缓存策略，对于协商缓存，将缓存信息中的 <code>Etag</code> 和 <code>Last-Modified</code> 通过请求头 <code>If-None-Match</code> 和 <code>If-Modified-Since</code> 发送给服务器，由服务器校验同时设置新的强制缓存，校验通过并返回 <code>304</code> 状态码时，浏览器直接使用缓存，如果协商缓存也未命中，则服务器重新设置协商缓存的标识。</p>
+        <h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p>JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">       Fn.prototype.name = <span class="string">'wjg'</span>;</span><br><span class="line">       Fn.prototype.getYear = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1996</span>;</span><br><span class="line">       &#125;;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> fn = <span class="keyword">new</span> Fn();</span><br><span class="line">       <span class="built_in">console</span>.log(fn.name);<span class="comment">//wjg</span></span><br><span class="line">       <span class="built_in">console</span>.log(fn.getYear());<span class="comment">//1996</span></span><br></pre></td></tr></table></figure>
+<p>如上面的代码，此时Fn.prototype里就增加两个自定义属性，一个name，一个是函数getYear。此时new构造函数Fn得出的实例对象就也会有这两个新属性。因为每个对象都有一个隐藏的属性——“<strong>proto</strong>”，这个属性引用了创建这个对象的函数的prototype。即：<code>fn.__proto__</code> === Fn.prototype。</p>
+<a id="more"></a>
+<p><code>__proto__</code>这个可以称为”隐形原型“，每个对象都有一个。以下的引用别人的一张图可以对比出以下区别</p>
+<p><img src="//wjg0615.github.io/2020/10/30/原型与原型链的一些解析/proto.png" alt="__proto__"></p>
+<p>总结来说每个对象都有一个<code>__proto__</code>属性，指向创建该对象的函数的prototype。后面就引出原型链。以下图就会非常可以看出什么是原型链。</p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p><img src="//wjg0615.github.io/2020/10/30/原型与原型链的一些解析/yuanxianglian.png" alt=""></p>
+<p>但这里有个非常需要的注意点：Object.prototype的<code>__proto__</code>指向的是null，切记切记！</p>
+<p>扩展：es5实现es6的Class</p>
+<p>其实这个就可以构造函数模式+原型模式。这样的好处是，每个实例可以保持独特的实例属性，也可以共有原型方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name;</span><br><span class="line">  <span class="keyword">this</span>.age=age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.sayName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name+<span class="keyword">this</span>.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">'zhm'</span>,<span class="number">25</span>);</span><br></pre></td></tr></table></figure>
+<p>而ES6里就是封装了这种模式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  construnctor(name,age)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.age=age;</span><br><span class="line">  &#125;</span><br><span class="line">  sayName()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name+<span class="keyword">this</span>.age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> student=<span class="keyword">new</span> Student(<span class="string">'zhm'</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<p>Class类中的constructor方法就相当于es5中的构造函数，其实类中的所有方法都定义在了prototype上，prototype对象的constructor属性也指向class类本身，被所有实例共享不同的是，Class只能通过new操作符调用，不能像es5中的构造函数一样，当成普通函数调用。</p>
+<p>Class的写法就是一种语法糖，这些功能es5都能实现，只不过使用class可以让对象原型更加清晰，更接近面向对象编程。constructor()方法是类的默认方法，所有的类都有constructor方法，如果constructor方法没有被显式定义，js会自动添加一个空的。</p>
 
       
     </div>
@@ -399,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/04/http的自我总结/" rel="next" title="http的自我总结（1）---TCP/IP协议">
-                <i class="fa fa-chevron-left"></i> http的自我总结（1）---TCP/IP协议
+              <a href="/2020/09/30/apply与call的区别详解/" rel="next" title="apply与call的区别详解">
+                <i class="fa fa-chevron-left"></i> apply与call的区别详解
               </a>
             
           </div>
@@ -408,6 +412,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/29/http的自我总结/" rel="prev" title="http的自我总结（1）---TCP/IP协议">
+                http的自我总结（1）---TCP/IP协议 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -540,7 +548,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强缓存"><span class="nav-number">1.1.</span> <span class="nav-text">强缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Expires"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Control"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Cache-Control</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协商缓存"><span class="nav-number">1.2.</span> <span class="nav-text">协商缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Last-Modified和If-Modified-Since"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Last-Modified和If-Modified-Since</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Etag和If-None-Match"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Etag和If-None-Match</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a></li></ol></div>
             
 
           </div>
@@ -560,7 +568,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-snowflake-o"></i>
   </span>

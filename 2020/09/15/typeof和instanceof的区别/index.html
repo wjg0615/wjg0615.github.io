@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="原型JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。 123456789function Fn() &amp;#123; &amp;#125;       Fn.prototype.name = &apos;wjg&apos;;       Fn.protot">
+<meta name="description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原型与原型链的一些解析">
-<meta property="og:url" content="http://wjg0615.github.io/2018/12/14/原型与原型链的一些解析/index.html">
+<meta property="og:title" content="typeof和instanceof的区别">
+<meta property="og:url" content="http://wjg0615.github.io/2020/09/15/typeof和instanceof的区别/index.html">
 <meta property="og:site_name" content="wjg博客">
-<meta property="og:description" content="原型JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。 123456789function Fn() &amp;#123; &amp;#125;       Fn.prototype.name = &apos;wjg&apos;;       Fn.protot">
+<meta property="og:description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wjg0615.github.io/2018/12/14/原型与原型链的一些解析/proto.png">
-<meta property="og:image" content="http://wjg0615.github.io/2018/12/14/原型与原型链的一些解析/yuanxianglian.png">
-<meta property="og:updated_time" content="2018-12-14T09:17:03.885Z">
+<meta property="og:image" content="http://wjg0615.github.io/2020/09/15/typeof和instanceof的区别/proto.png">
+<meta property="og:image" content="http://wjg0615.github.io/2020/09/15/typeof和instanceof的区别/instanceof.png">
+<meta property="og:updated_time" content="2020-12-07T13:03:30.751Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原型与原型链的一些解析">
-<meta name="twitter:description" content="原型JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。 123456789function Fn() &amp;#123; &amp;#125;       Fn.prototype.name = &apos;wjg&apos;;       Fn.protot">
-<meta name="twitter:image" content="http://wjg0615.github.io/2018/12/14/原型与原型链的一些解析/proto.png">
+<meta name="twitter:title" content="typeof和instanceof的区别">
+<meta name="twitter:description" content="typeoftypeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。 它返回值是一个字符串，说明运算数的类型。 typeof返回果:number，string，undefined，object，boolean，function，symbol（ES6新增）">
+<meta name="twitter:image" content="http://wjg0615.github.io/2020/09/15/typeof和instanceof的区别/proto.png">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://wjg0615.github.io/2018/12/14/原型与原型链的一些解析/">
+  <link rel="canonical" href="http://wjg0615.github.io/2020/09/15/typeof和instanceof的区别/">
 
 
 
 
 
-  <title>原型与原型链的一些解析 | wjg博客</title>
+  <title>typeof和instanceof的区别 | wjg博客</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wjg0615.github.io/2018/12/14/原型与原型链的一些解析/">
+    <link itemprop="mainEntityOfPage" href="http://wjg0615.github.io/2020/09/15/typeof和instanceof的区别/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wjg">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">原型与原型链的一些解析</h1>
+          <h1 class="post-title" itemprop="name headline">typeof和instanceof的区别</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T14:24:50+08:00">
-                2018-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00+08:00">
+                2020-09-15
               </time>
             
 
@@ -303,8 +303,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/14/原型与原型链的一些解析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/14/原型与原型链的一些解析/" itemprop="commentCount"></span>
+                <a href="/2020/09/15/typeof和instanceof的区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/15/typeof和instanceof的区别/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,7 +326,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  607 字
+                  536 字
                 </span>
               
 
@@ -363,22 +363,25 @@
       
 
       
-        <h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p>JavaScript里有一句就是万物皆对象。其实函数也是一种对象，它是属性的集合，我们可以对函数进行自定义属性，JavaScript就默认为函数提供了一个属性—-prototype，没错，prototype是函数才有的属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">       Fn.prototype.name = <span class="string">'wjg'</span>;</span><br><span class="line">       Fn.prototype.getYear = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1996</span>;</span><br><span class="line">       &#125;;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> fn = <span class="keyword">new</span> Fn();</span><br><span class="line">       <span class="built_in">console</span>.log(fn.name);<span class="comment">//wjg</span></span><br><span class="line">       <span class="built_in">console</span>.log(fn.getYear());<span class="comment">//1996</span></span><br></pre></td></tr></table></figure>
-<p>如上面的代码，此时Fn.prototype里就增加两个自定义属性，一个name，一个是函数getYear。此时new构造函数Fn得出的实例对象就也会有这两个新属性。因为每个对象都有一个隐藏的属性——“<strong>proto</strong>”，这个属性引用了创建这个对象的函数的prototype。即：<code>fn.__proto__</code> === Fn.prototype。</p>
+        <h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p><strong>typeof是一个一元运算符，放在一个运算数之前，运算数可以使任意类型。</strong></p>
+<p>它返回值是一个字符串，说明运算数的类型。</p>
+<p>typeof返回果:<strong>number</strong>，<strong>string</strong>，<strong>undefined</strong>，<strong>object</strong>，<strong>boolean</strong>，<strong>function</strong>，<strong>symbol</strong>（<strong>ES6新增</strong>）</p>
 <a id="more"></a>
-<p><code>__proto__</code>这个可以称为”隐形原型“，每个对象都有一个。以下的引用别人的一张图可以对比出以下区别</p>
-<p><img src="//wjg0615.github.io/2018/12/14/原型与原型链的一些解析/proto.png" alt="__proto__"></p>
-<p>总结来说每个对象都有一个<code>__proto__</code>属性，指向创建该对象的函数的prototype。后面就引出原型链。以下图就会非常可以看出什么是原型链。</p>
-<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p><img src="//wjg0615.github.io/2018/12/14/原型与原型链的一些解析/yuanxianglian.png" alt=""></p>
-<p>但这里有个非常需要的注意点：Object.prototype的<code>__proto__</code>指向的是null，切记切记！</p>
-<p>扩展：es5实现es6的Class</p>
-<p>其实这个就可以构造函数模式+原型模式。这样的好处是，每个实例可以保持独特的实例属性，也可以共有原型方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name;</span><br><span class="line">  <span class="keyword">this</span>.age=age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.sayName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name+<span class="keyword">this</span>.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">'zhm'</span>,<span class="number">25</span>);</span><br></pre></td></tr></table></figure>
-<p>而ES6里就是封装了这种模式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  construnctor(name,age)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.age=age;</span><br><span class="line">  &#125;</span><br><span class="line">  sayName()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name+<span class="keyword">this</span>.age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> student=<span class="keyword">new</span> Student(<span class="string">'zhm'</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<p>Class类中的constructor方法就相当于es5中的构造函数，其实类中的所有方法都定义在了prototype上，prototype对象的constructor属性也指向class类本身，被所有实例共享不同的是，Class只能通过new操作符调用，不能像es5中的构造函数一样，当成普通函数调用。</p>
-<p>Class的写法就是一种语法糖，这些功能es5都能实现，只不过使用class可以让对象原型更加清晰，更接近面向对象编程。constructor()方法是类的默认方法，所有的类都有constructor方法，如果constructor方法没有被显式定义，js会自动添加一个空的。</p>
+<p>数字 typeof(x)=”number”  字符串 typeof(x)=”string” 布尔值 typeof(x)=”boolean” 对象，数组和null typeof(x) = “object”  函数 typeof(x)=”function”</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> (<span class="number">123</span>));<span class="comment">//typeof(123)返回"number" </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> (<span class="string">"123"</span>));<span class="comment">//typeof("123")返回"string"</span></span><br><span class="line"><span class="keyword">var</span> param1 = <span class="string">"string"</span>;</span><br><span class="line"><span class="keyword">var</span> param2 = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">var</span> param3 = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(param1)+<span class="string">"\n"</span>+<span class="keyword">typeof</span>(param2)+<span class="string">"\n"</span>+<span class="keyword">typeof</span>(param3)); <span class="comment">//string object number</span></span><br></pre></td></tr></table></figure>
+<p>我们可以使用typeof来确定一个变量是否存在。如：if(typeof(a)!=”undefined”)。</p>
+<p><strong>局限性</strong>：但是在判断一个引用类型的变量时会出现一个问题，无论是什么引用类型都是object。这时候就需要instanceof来检测某个对象是不是另一个对象的实例。</p>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p><strong>instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的prototype属性。用于判断一个变量是否某个对象的实例</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如 :<span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">alert(a <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true，</span></span><br><span class="line">同时 alert(a <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//也会返回 true;</span></span><br><span class="line"><span class="comment">//这是因为 Array 是 object 的子类。</span></span><br></pre></td></tr></table></figure>
+<p>这里如果要究其原理的话，那就要涉及到原型和隐形原型了。</p>
+<p>上面例子中为什么a instanceof test 是返回true? (这里简单的说明一下原型，后面会补充详细的原型)</p>
+<p>每个函数function都有一个prototype，即原型。每个对象都有一个<code>__proto__</code>，为隐式原型。</p>
+<p><img src="//wjg0615.github.io/2020/09/15/typeof和instanceof的区别/proto.png" alt=""></p>
+<p>如上图，每个对象都有一个<code>__proto__</code>属性，指向创建该对象的函数的<strong>prototype</strong>。</p>
+<p>instanceof的判断规则往下面的例子看</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> Foo();</span><br><span class="line">alert(f1 <span class="keyword">instanceof</span> Foo) <span class="comment">//会返回true</span></span><br></pre></td></tr></table></figure>
+<p><img src="//wjg0615.github.io/2020/09/15/typeof和instanceof的区别/instanceof.png" alt=""></p>
+<p>然后instanceof的判断规则就是：instanceof运算符的第一个变量是一个对象，暂时称为A;第二个变量一般是函数，称为B。沿着A的<code>__proto__</code>这条线来找，同时沿着B的prototype这条线来找，如果两条线能找到同一个引用，就是返回true，如果找到终点都没有重合就返回false。</p>
 
       
     </div>
@@ -403,18 +406,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/08/apply与call的区别详解/" rel="next" title="apply与call的区别详解">
-                <i class="fa fa-chevron-left"></i> apply与call的区别详解
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/04/http的自我总结/" rel="prev" title="http的自我总结（1）---TCP/IP协议">
-                http的自我总结（1）---TCP/IP协议 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/09/30/apply与call的区别详解/" rel="prev" title="apply与call的区别详解">
+                apply与call的区别详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -548,7 +547,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typeof"><span class="nav-number">1.</span> <span class="nav-text">typeof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instanceof"><span class="nav-number">2.</span> <span class="nav-text">instanceof</span></a></li></ol></div>
             
 
           </div>
@@ -568,7 +567,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-snowflake-o"></i>
   </span>
